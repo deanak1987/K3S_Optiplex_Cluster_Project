@@ -1,1 +1,3 @@
 # K3S_Optiplex_Cluster_Project
+Distributed omputing systems play a massive role in today's technology industries. Since it's not always feasible to have a singular powerful machine, the ability to utilize many smaller machines and combine the processing power for containerized programs has been made possible thanks to technologies like Kubernetes and Docker Swarm. 
+Afer taking an applied distributed computing course while working on my master's degree in computer science, I wanted to build a distributed compute cluster for myself using affordable equipment such as micro form factor computers such as the Dell Optiplex or Lenovo ThinkCentre.
