@@ -1,5 +1,3 @@
-dell optplex 7050 pve node 1 terraform api key faa22132-e2b5-49da-a964-4d0478e99d6c
-
 nodes = [
   {
     name     = "optiplex01"
