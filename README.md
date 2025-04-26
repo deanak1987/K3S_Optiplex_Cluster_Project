@@ -132,3 +132,39 @@ kubectl get storageclass
 ```
 
 You should see `longhorn` marked as `(default)`.
+
+### Step 7: Install kubectl on Your Workstation
+
+To manage the cluster from your workstation:
+
+#### 1. Install kubectl
+```bash
+curl -LO "https://dl.k8s.io/release/$(curl -s https://dl.k8s.io/release/stable.txt)/bin/linux/amd64/kubectl"
+```
+
+#### 2. Make it Executable
+```bash 
+chmod +x kubectl
+```
+
+#### 3. Move to PATH
+```bash
+sudo mv kubectl /usr/local/bin/
+```
+
+#### 4. Verify
+```bash
+kubectl version --client
+```
+
+#### 5. Copy the config from a master node:
+```bash
+scp USER@MASTER_IP_ADDRESS:/etc/rancher/k3s/k3s.yaml ~/.kube/config
+```
+
+#### 6. Edit the config to use the load balancer's IP:
+```bash
+sed -i 's/127.0.0.1/LOAD_BALANCER_IP/g' ~/.kube/config
+```
+
+
