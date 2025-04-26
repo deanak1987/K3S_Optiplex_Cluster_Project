@@ -118,3 +118,17 @@ kubectl apply -f https://raw.githubusercontent.com/longhorn/longhorn/master/depl
 ```bash
 kubectl -n longhorn-system get pods -w
 ```
+
+#### 3. Set Longhorn as the default StorageClass
+
+```bash
+kubectl patch storageclass longhorn -p '{"metadata": {"annotations":{"storageclass.kubernetes.io/is-default-class":"true"}}}'
+```
+
+#### 4. Verify the default StorageClass
+
+```bash
+kubectl get storageclass
+```
+
+You should see `longhorn` marked as `(default)`.
