@@ -57,3 +57,47 @@ Restart HAProxy:
 sudo systemctl restart haproxy
 ```
 
+### Step 3: Set Up the First Master Node
+
+On your first Dell Optiplex:
+
+```bash
+# Install k3s as the first server node
+curl -sfL https://get.k3s.io | sh -s - server \
+  --token=YOUR_CLUSTER_TOKEN \
+  --tls-san LOAD_BALANCER_IP \
+  --node-ip=MASTER_IP_ADDRESS \
+  --advertise-address=MASTER_IP_ADDRESS \
+  --cluster-init
+```
+
+The cluster token was created using open SSL to produce a random 64-character token.
+
+```bash 
+openssl rand -hex 32
+```
+
+### Step 4: Add the Other Master Nodes
+Since uy wanted to he able to experiment with high availability, I decided to set each is the devices as master nodes to ensure that if a device were to go down that the cluster would continue to operate. 
+
+On the second and third Dell Optiplex machines:
+
+```bash
+# Install k3s as additional server nodes
+curl -sfL https://get.k3s.io | sh -s - server \
+  --token=YOUR_CLUSTER_TOKEN \
+  --tls-san LOAD_BALANCER_IP \
+  --node-ip=NODE_IP_ADDRESS \
+  --advertise-address=NODE_IP_ADDRESS \
+  --server https://LOAD_BALANCER_IP:6443
+```
+
+### Step 5: Verify the Cluster
+
+From any of the master nodes:
+
+```bash
+sudo kubectl get nodes
+```
+
+You should see all three nodes listed with the "Ready" status.
