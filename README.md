@@ -16,11 +16,44 @@ I settled on the Dell Optiplex 7050. I was able to get ahold of three devices on
 
 1× Raspberry Pi 4 (load balancer)
 
+<img src="images/PXL_20250418_185342523.jpg" width="400">
+
+
 ### Software Overview
   * Proxmox VE 8.4
-  * Ubuntu Server 24.04.2 AMD64 (for the Optiplex machines)
+  * Ubuntu Server 24.04.2 LTS AMD64 (for the Optiplex machines)
   * Rancher K3S
-  * Ubuntu Server 24.04.2 ARM64 (for RPi4)
+  * Ubuntu Server 24.04.2 LTS ARM64 (for RPi4)
 
-<img src="images/PXL_20250418_185342523.jpg" width="400">
+## Setup Progress
+### Step 1: Prepare the Systems
+
+First, install Ubuntu Server the Dell machines and the RPi4.
+
+For each Dell Optiplex:
+1. Download Ubuntu Server
+2. Create a bootable USB drive
+3. Install Ubuntu Server with minimal options
+4. Set static IP addresses for each node
+
+For the Raspberry Pi 4:
+1. Download Ubuntu Server for ARM
+2. Flash it to an SD card
+3. Set a static IP address
+
+### Step 2: Set Up the Load Balancer (RPi4)
+
+Install HAProxy on the RPi4:
+
+```bash
+sudo apt update
+sudo apt install -y haproxy
+```
+
+Configure HAProxy by editing `/etc/haproxy/haproxy.cfg`:
+
+Restart HAProxy:
+```bash
+sudo systemctl restart haproxy
+```
 
