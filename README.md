@@ -101,3 +101,20 @@ sudo kubectl get nodes
 ```
 
 You should see all three nodes listed with the "Ready" status.
+
+### Step 6: Configure Storage
+Since the goal of this project was to practice using distributed systems, I opted to utilize a distributed storage method using Longhorn to ensure expanded yet resilient storage.
+
+#### 1. Install Longhorn
+
+Apply the Longhorn manifest:
+
+```bash
+kubectl apply -f https://raw.githubusercontent.com/longhorn/longhorn/master/deploy/longhorn.yaml
+```
+
+#### 2. Wait for Longhorn components to be ready
+
+```bash
+kubectl -n longhorn-system get pods -w
+```
