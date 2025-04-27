@@ -211,9 +211,12 @@ kubectl patch svc prometheus-new-kube-promet-prometheus -n monitoring --type='js
 ```
 
 Finally, obtain the Grafana password using:
+```bash
+kubectl get secret prometheus-grafana -n monitoring -o jsonpath="{.data.admin-password}" | base64 --decode
+```
 
+By default, the user name is 'admin'
 
-Default user name is admin
 ## Next Steps
   * Add Terraform and Ansible automation
   * Implement system and metric tests to determine cluster efficiency
