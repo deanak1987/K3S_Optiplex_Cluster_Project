@@ -23,4 +23,3 @@ I settled on the Dell Optiplex 7050. I was able to get ahold of three devices on
   * Ubuntu Server 24.04.2 ARM64 (for RPi4)
 
 <img src="images/PXL_20250418_185342523.jpg" width="400">
-
