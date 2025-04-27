@@ -210,6 +210,10 @@ kubectl patch svc prometheus-new-grafana -n monitoring --type='json' -p '[{"op":
 kubectl patch svc prometheus-new-kube-promet-prometheus -n monitoring --type='json' -p '[{"op": "replace", "path": "/spec/type", "value": "LoadBalancer"}]'
 ```
 
+Finally, obtain the Grafana password using:
+
+
+Default user name is admin
 ## Next Steps
   * Add Terraform and Ansible automation
   * Implement system and metric tests to determine cluster efficiency
