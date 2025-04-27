@@ -171,9 +171,44 @@ sed -i 's/127.0.0.1/LOAD_BALANCER_IP/g' ~/.kube/config
 Since k3s is a significantly lighter version of k8s, it does not come with any monitoring out of the box. Therefore, of we want monitoring, we have to add it separately. 
 
 Deploy Prometheus and Grafana for monitoring:
-TBA
 
+Since we may not always have our laptop on the network, it would be a good idea to use the RPI4 load balancer as a means for hosting the monitoring pages. To accomplish this we're going to utilize MetalLB.
 
+#### 1. Install MetalLB
+Visit the MetalLB GitHub releases page to find the latest version and install accordingly 
+
+'''bash
+kubectl apply -f https://raw.githubusercontent.com/metallb/metallb/<latest_version>/manifests/metallb.yaml
+'''
+
+Configure MetalLB Address Pool and Apply
+Configure metallb-config.yaml
+
+'''bash
+kubectl apply -f metallb-config.yaml
+'''
+
+#### 2. Install the Kube-Prometheus Stack via Helm 
+
+'''bash
+helm install prometheus prometheus-community/kube-prometheus-stack \
+  --namespace monitoring \
+  --set prometheus.prometheusSpec.serviceMonitorSelectorNilUsesHelmValues=false \
+  --set prometheus.prometheusSpec.podMonitorSelectorNilUsesHelmValues=false
+'''
+
+After installing, verify by checking services
+
+'''bash
+kubectl get SVC -n monitoring
+'''
+
+You should see EXTERNAL-IP from the pool range on Grafana and Prometheus. If not, fix them with the following: 
+
+'''bash
+kubectl patch svc prometheus-new-grafana -n monitoring --type='json' -p '[{"op": "replace", "path": "/spec/type", "value": "LoadBalancer"}]'
+kubectl patch svc prometheus-new-kube-promet-prometheus -n monitoring --type='json' -p '[{"op": "replace", "path": "/spec/type", "value": "LoadBalancer"}]'
+'''
 
 ## Next Steps
   * Add Terraform and Ansible automation
