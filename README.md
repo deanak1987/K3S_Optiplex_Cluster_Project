@@ -167,4 +167,15 @@ scp USER@MASTER_IP_ADDRESS:/etc/rancher/k3s/k3s.yaml ~/.kube/config
 sed -i 's/127.0.0.1/LOAD_BALANCER_IP/g' ~/.kube/config
 ```
 
+### Step 8: Set Up Monitoring (Optional)
+Since k3s is a significantly lighter version of k8s, it does not come with any monitoring out of the box. Therefore, of we want monitoring, we have to add it separately. 
 
+Deploy Prometheus and Grafana for monitoring:
+TBA
+
+
+
+## Next Steps
+  * Add Terraform and Ansible automation
+  * Implement system and metric tests to determine cluster efficiency
+  * Find more ways to learn and work with Kubernetes
