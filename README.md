@@ -202,7 +202,7 @@ helm install prometheus prometheus-community/kube-prometheus-stack \
   --set prometheus.prometheusSpec.podMonitorSelectorNilUsesHelmValues=false
 ```
 
-After installing, verify by checking services
+After installing, verify by checking the services
 
 ```bash
 kubectl get SVC -n monitoring
@@ -221,6 +221,17 @@ kubectl get secret prometheus-grafana -n monitoring -o jsonpath="{.data.admin-pa
 ```
 
 By default, the user name is 'admin'
+
+#### (Optionally) Install the Kubernetes Dashboard
+Deploy the Dashboard:
+```bash
+kubectl apply -f https://raw.githubusercontent.com/kubernetes/dashboard/v2.7.0/aio/deploy/recommended.yaml
+```
+
+Create any apply dashboard-loadbalancer.yaml
+```bash
+kubectl apply -f dashboard-loadbalancer.yaml
+```
 
 ## Next Steps
   * Add Terraform and Ansible automation
