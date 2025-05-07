@@ -188,6 +188,11 @@ Configure metallb-config.yaml
 kubectl apply -f metallb-config.yaml
 ```
 
+Veify the IP-pool
+```bash
+kubectl get ipaddresspool -n metallb-system
+```
+
 #### 2. Install the Kube-Prometheus Stack via Helm 
 
 ```bash
