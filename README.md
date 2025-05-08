@@ -233,6 +233,12 @@ Create any apply dashboard-loadbalancer.yaml
 kubectl apply -f dashboard-loadbalancer.yaml
 ```
 
+## Following Projects
+
+### Spark and Jupyter Notebook
+### Spark
+[Spark Install](SparkInstallREADME.md)
+
 ## Next Steps
   * Add Terraform and Ansible automation
   * Implement system and metric tests to determine cluster efficiency
