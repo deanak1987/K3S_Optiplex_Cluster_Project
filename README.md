@@ -236,8 +236,10 @@ kubectl apply -f dashboard-loadbalancer.yaml
 ## Following Projects
 
 ### Spark and Jupyter Notebook
-### Spark
-[Spark Install](SparkInstallREADME.md)
+#### Spark
+[Spark Install](ReadMes/SparkInstallREADME.md)
+#### Jupyter
+[Jupyter Notebook Install](ReadMes/JupyterREADME.md)
 
 ## Next Steps
   * Add Terraform and Ansible automation
