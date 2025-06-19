@@ -20,7 +20,7 @@ metadata:
   namespace: wordpress
 type: Opaque
 data:
-  password: bXlzcWxwYXNz # base64("mysqlpass")
+  password: aaaaaaaa # base64("mysqlpass")
 
 ---
 apiVersion: apps/v1
