@@ -54,6 +54,7 @@ Configure HAProxy by editing `/etc/haproxy/haproxy.cfg`:
 
 Restart HAProxy:
 ```bash
+sudo systemctl enable haproxy
 sudo systemctl restart haproxy
 ```
 
