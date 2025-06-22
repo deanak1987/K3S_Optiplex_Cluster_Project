@@ -58,13 +58,18 @@ sudo systemctl restart haproxy
 ```
 
 ### Step 3: Set Up the First Master Node
+First create atoek for the cluster and save it as a system variable
+
+```bash
+export CLUSTER_TOKEN=$(openssl rand -hex 32)
+```
 
 On your first Dell Optiplex:
 
 ```bash
 # Install k3s as the first server node
 curl -sfL https://get.k3s.io | sh -s - server \
-  --token=YOUR_CLUSTER_TOKEN \
+  --token=$CLUSTER_TOKEN \
   --tls-san LOAD_BALANCER_IP \
   --node-ip=MASTER_IP_ADDRESS \
   --advertise-address=MASTER_IP_ADDRESS \
