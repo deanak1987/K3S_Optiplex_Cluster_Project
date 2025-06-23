@@ -50,7 +50,11 @@ sudo apt update
 sudo apt install -y haproxy
 ```
 
-Configure HAProxy by editing `/etc/haproxy/haproxy.cfg`:
+Configure HAProxy by editing happy config file:
+
+```bash
+sudo nano /etc/haproxy/haproxy.cfg
+```
 
 Restart HAProxy:
 ```bash
@@ -63,6 +67,7 @@ First create atoek for the cluster and save it as a system variable
 
 ```bash
 export CLUSTER_TOKEN=$(openssl rand -hex 32)
+echo $CLUSTERTOKEN
 ```
 
 On your first Dell Optiplex:
@@ -70,7 +75,7 @@ On your first Dell Optiplex:
 ```bash
 # Install k3s as the first server node
 curl -sfL https://get.k3s.io | sh -s - server \
-  --token=$CLUSTER_TOKEN \
+  --token=CLUSTER_TOKEN \
   --tls-san LOAD_BALANCER_IP \
   --node-ip=MASTER_IP_ADDRESS \
   --advertise-address=MASTER_IP_ADDRESS \
@@ -84,7 +89,7 @@ openssl rand -hex 32
 ```
 
 ### Step 4: Add the Other Master Nodes
-Since uy wanted to he able to experiment with high availability, I decided to set each is the devices as master nodes to ensure that if a device were to go down that the cluster would continue to operate. 
+Since I wanted to he able to experiment with high availability, I decided to set each of the devices as master nodes to ensure that if a device were to go down that the cluster would continue to operate. 
 
 On the second and third Dell Optiplex machines:
 
@@ -96,6 +101,13 @@ curl -sfL https://get.k3s.io | sh -s - server \
   --node-ip=NODE_IP_ADDRESS \
   --advertise-address=NODE_IP_ADDRESS \
   --server https://LOAD_BALANCER_IP:6443
+```
+
+Alternatively, if you want to set your devices as agent nodes, enter the following: 
+
+```bash
+#Install k3s as additional agent nodes
+curl -sfL https://get.k3s.io | K3S_URL=https://LOAD_BALANCER_IP:6443 K3S_TOKEN=CLUSTER_TOKEN sh -
 ```
 
 ### Step 5: Verify the Cluster
