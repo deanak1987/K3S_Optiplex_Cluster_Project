@@ -223,7 +223,7 @@ helm install prometheus prometheus-community/kube-prometheus-stack \
 After installing, verify by checking the services
 
 ```bash
-kubectl get SVC -n monitoring
+kubectl get svc -n monitoring
 ```
 
 You should see EXTERNAL-IP from the pool range on Grafana and Prometheus. If not, fix them with the following: 
