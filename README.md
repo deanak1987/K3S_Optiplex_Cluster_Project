@@ -204,7 +204,7 @@ Configure metallb-config.yaml
 kubectl apply -f metallb-config.yaml
 ```
 
-Veify the IP-pool
+Verify the IP-pool
 ```bash
 kubectl get ipaddresspool -n metallb-system
 ```
@@ -212,6 +212,8 @@ kubectl get ipaddresspool -n metallb-system
 #### 2. Install the Kube-Prometheus Stack via Helm 
 
 ```bash
+kubectl create namespace monitoring
+
 helm install prometheus prometheus-community/kube-prometheus-stack \
   --namespace monitoring \
   --set prometheus.prometheusSpec.serviceMonitorSelectorNilUsesHelmValues=false \
