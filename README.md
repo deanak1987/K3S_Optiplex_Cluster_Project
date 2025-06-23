@@ -63,7 +63,7 @@ sudo systemctl restart haproxy
 ```
 
 ### Step 3: Set Up the First Master Node
-First create atoek for the cluster and save it as a system variable
+First, create a token for the cluster and save it as a system variable so it can be easily retreived when needed
 
 ```bash
 export CLUSTER_TOKEN=$(openssl rand -hex 32)
@@ -82,14 +82,8 @@ curl -sfL https://get.k3s.io | sh -s - server \
   --cluster-init
 ```
 
-The cluster token was created using open SSL to produce a random 64-character token.
-
-```bash 
-openssl rand -hex 32
-```
-
 ### Step 4: Add the Other Master Nodes
-Since I wanted to he able to experiment with high availability, I decided to set each of the devices as master nodes to ensure that if a device were to go down that the cluster would continue to operate. 
+Since I wanted to be able to experiment with high availability, I decided to set each of the devices as master nodes to ensure that if a device were to go down that the cluster would continue to operate. 
 
 On the second and third Dell Optiplex machines:
 
@@ -119,6 +113,10 @@ sudo kubectl get nodes
 ```
 
 You should see all three nodes listed with the "Ready" status.
+
+Note: Going forward, kubectl commands will be used very often. The quick reference guide can be found at: 
+
+https://kubernetes.io/docs/reference/kubectl/quick-reference/
 
 ### Step 6: Configure Storage
 Since the goal of this project was to practice using distributed systems, I opted to utilize a distributed storage method using Longhorn to ensure expanded yet resilient storage.
