@@ -193,7 +193,7 @@ Deploy Prometheus and Grafana for monitoring:
 Since we may not always have our laptop on the network, it would be a good idea to use the RPI4 load balancer as a means for hosting the monitoring pages. To accomplish this we're going to utilize MetalLB.
 
 #### 1. Install MetalLB
-Visit the MetalLB GitHub releases page to find the latest version and install accordingly 
+Visit the [MetalLB GitHub releases page](https://github.com/metallb/metallb/releases) to find the latest version and install accordingly 
 
 ```bash
 kubectl apply -f https://raw.githubusercontent.com/metallb/metallb/<latest_version>/manifests/metallb.yaml
