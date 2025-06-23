@@ -196,7 +196,7 @@ Since we may not always have our laptop on the network, it would be a good idea 
 Visit the [MetalLB GitHub releases page](https://github.com/metallb/metallb/releases) to find the latest version and install accordingly 
 
 ```bash
-kubectl apply -f https://raw.githubusercontent.com/metallb/metallb/<latest_version>/manifests/metallb.yaml
+kubectl apply -f https://raw.githubusercontent.com/metallb/metallb/<latest_version>/config/manifests/metallb.yaml
 ```
 
 Configure MetalLB Address Pool and Apply
