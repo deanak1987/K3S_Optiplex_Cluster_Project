@@ -229,8 +229,8 @@ kubectl get svc -n monitoring
 You should see EXTERNAL-IP from the pool range on Grafana and Prometheus. If not, fix them with the following: 
 
 ```bash
-kubectl patch svc prometheus-new-grafana -n monitoring --type='json' -p '[{"op": "replace", "path": "/spec/type", "value": "LoadBalancer"}]'
-kubectl patch svc prometheus-new-kube-promet-prometheus -n monitoring --type='json' -p '[{"op": "replace", "path": "/spec/type", "value": "LoadBalancer"}]'
+kubectl patch svc prometheus-grafana -n monitoring --type='json' -p '[{"op": "replace", "path": "/spec/type", "value": "LoadBalancer"}]'
+kubectl patch svc prometheus-kube-prometheus-prometheus -n monitoring --type='json' -p '[{"op": "replace", "path": "/spec/type", "value": "LoadBalancer"}]'
 ```
 
 Finally, obtain the Grafana password using:
